@@ -54,14 +54,26 @@ billeteraParis = driver.find_element(
 billeteraParis.send_keys(Keys.ENTER)
 time.sleep(2)
 
-#Elegimos un color NO disponible
+#Elige un color NO disponible
 colorNodisponible = driver.find_element(
     By.XPATH, "/html/body/div[2]/div/div[1]/div/div/div/div[3]/div/div[2]/div/section/div/div[2]/div/div[4]/div/div/div[1]/div/div[1]/div/div[2]/div[6]"
 )
 colorNodisponible.send_keys(Keys.ENTER)
 time.sleep(2)
 
-assert driver.find_element(By.XPATH, "/html/body/div[2]/div/div[1]/div/div/div/div[3]/div/div[2]/div/section/div/div[2]/div/div[6]").text == "AGREGAR A LA BOLSA", "Boton no encontrado"
+#Valida que el botón AGREGAR A BOLSA no esté visible y tampoco su label
+botonAgregar = driver.find_element(By.XPATH, "/html/body/div[2]/div/div[1]/div/div/div/div[3]/div/div[2]/div/section/div/div[2]/div/div[6]/div/div/div/button")
+botonAgregarvisiblemente = botonAgregar.is_displayed()
+print(botonAgregarvisiblemente, "Botón Agregar a la Bolsa es visible")
+botonAgregarTexto = botonAgregar.text
+assert botonAgregarTexto == "Agregar a la bolsa", "Botón Agregar a la Bolsa no es visible ni tampoco su label"
+requirement = "Agregar a la Bolsa"
+labelObtained = botonAgregar.text
+billeteraParis.send_keys(Keys.ENTER)
+time.sleep(2)
+
+
+driver.close()
 
 
 
@@ -80,18 +92,6 @@ assert driver.find_element(By.XPATH, "/html/body/div[2]/div/div[1]/div/div/div/d
 
 
 
-#requierement = ()
-#labelObtained = ()
-
-#def compareLabels():
-    #if requierement in labelObtained:
-     #   print("Pass")
-      #  else:
-       #     print("Fail")
-
-
-
-#usuario = driver.find_element(By.XPATH, '/html/body/div[2]/div/div[1]/div/div[1]/div/div[2]/div/div/section/div/div/section/div/div[3]/div/div/div/div/div[5]/div/div/button')
 
 
 
@@ -101,4 +101,3 @@ assert driver.find_element(By.XPATH, "/html/body/div[2]/div/div[1]/div/div/div/d
 
 
 
-#driver.close()

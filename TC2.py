@@ -65,3 +65,24 @@ botonAgregarbolsa = driver.find_element(
     By.XPATH, "/html/body/div[2]/div/div[1]/div/div/div/div[3]/div/div[2]/div/section/div/div[3]/div/div/div/div[1]/div/div[4]/div/div/div[2]/div[2]/i")
 botonAgregarbolsa.send_keys(Keys.ENTER)
 time.sleep(2)
+
+#Validar que se sumó una unidad del mismo producto al carrito de compras
+productoRequerido = () #Resultado Esperado
+productoObtenido = () #Resultado Obtenido
+
+def compararMensajes():
+    if productoRequerido in productoObtenido:
+        print("Pass")
+    else:
+            print("Fail")
+
+productoSumado = driver.find_element(By.XPATH, "/html/body/div[2]/div/div[1]/div/div/div/div[3]/div/div[2]/div/section/div/div[3]/div/div/div/div[1]/div[5]")
+print("productoSumado: " + productoSumado)
+productoObtenido = productoSumado
+
+productoRequerido = "Camisa Slim Celeste"
+
+compararMensajes()
+time.sleep(5)
+
+driver.close()

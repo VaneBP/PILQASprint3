@@ -110,4 +110,30 @@ eliminarProducto = driver.find_element(
 eliminarProducto.send_keys(Keys.ENTER)
 time.sleep(2)
 
+#Valida que el producto se eliminó del carrito de compras
+productoRequirement = () #Resultado Esperado
+productoEliminado = () #Resultado Obtenido
 
+def compararMensajes():
+    if productoRequirement in productoEliminado:
+        print("Pass")
+    else:
+            print("Fail")
+
+productoNovisible = driver.find_element(By.XPATH, "/html/body/div[4]/div[3]/div[1]/div[1]/div[2]/table/tbody/tr[1]")
+print("productoNovisible: " + productoNovisible)
+productoEliminado = productoNovisible
+
+productoRequirement = "Bermuda Santos Summer"
+
+compararMensajes()
+time.sleep(5)
+
+
+
+
+
+
+
+
+driver.close()
